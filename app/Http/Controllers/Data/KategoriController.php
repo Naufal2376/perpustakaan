@@ -43,4 +43,28 @@ class KategoriController extends Controller
 
         return redirect()->route('data.kategori')->with('success', 'Kategori Berhasil Dihapus');
     }
+
+    public function edit_kategori($kategori_id)
+    {
+        $data = Kategori::find($kategori_id);
+
+        return view('dashboard.user.data.edit_kategori', compact('data'));
+    }
+
+    public function update_kategori(Request $request, $kategori_id)
+    {
+        $request->validate([
+            'nama' => 'required',
+        ]);
+
+        $data = [
+            'nama' => $request->nama,
+        ];
+
+        $data2 = Kategori::find($kategori_id);
+
+        $data2->update($data);
+
+        return redirect()->route('data.kategori')->with('success', 'Kategori Berhasil Diupdate');
+    }
 }

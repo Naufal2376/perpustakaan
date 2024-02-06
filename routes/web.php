@@ -6,6 +6,7 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Data\BukuController;
 use App\Http\Controllers\Data\UserController;
+use App\Http\Controllers\Data\LaporanController;
 use App\Http\Controllers\Data\KategoriController;
 use App\Http\Controllers\Data\PeminjamanController;
 
@@ -45,9 +46,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data_kategori/tambah', [KategoriController::class, 'tambah_kategori'])->name('tambah.kategori');
     Route::post('/data_kategori/store', [KategoriController::class, 'store_kategori'])->name('store.kategori');
     Route::post('/data_kategori/hapus/{kategori_id}', [KategoriController::class, 'hapus_kategori'])->name('hapus.kategori');
+    Route::get('/data_kategori/edit/{kategori_id}', [KategoriController::class, 'edit_kategori'])->name('edit.kategori');
+    Route::post('/data_kategori/update/{kategori_id}', [KategoriController::class, 'update_kategori'])->name('update.kategori');
 
     // data laporan
-
+    Route::get('/data_laporan', [LaporanController::class, 'data_laporan'])->name('data.laporan');
 
     // data peminjaman
     Route::get('/data_peminjaman', [PeminjamanController::class, 'data_peminjaman'])->name('data.peminjaman');

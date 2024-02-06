@@ -31,6 +31,9 @@
                         <td>
                             <form action="{{ route('hapus.kategori', $item->kategori_id) }}"  method="POST">
                                 @csrf
+                                <a href="{{ route('edit.kategori', $item->kategori_id) }}" class="btn btn-warning">
+                                    <i class="fas fa-fw fa-edit"></i>
+                                </a>
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('yakin ingin menghapus data ini?')">
                                     <i class="fas fa-fw fa-trash"></i>
                                 </button>
