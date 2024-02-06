@@ -1,15 +1,14 @@
 @extends('layouts.user')
-
 @section('content')
 
 <div class="card shadow">
-    <div class="h3 card-header text-primary">Data Buku</div>
+    <div class="h3 card-header text-primary">Data Kategori</div>
     <div class="card-body">
-        <a href="{{ route('tambah.buku') }}" class="btn btn-primary btn-icon-split">
+        <a href="{{ route('tambah.kategori') }}" class="btn btn-primary btn-icon-split">
             <span class="icon text-white-50">
                 <i class="fas fa-fw fa-plus"></i>
             </span>
-            <span class="text">Tambah Buku</span>
+            <span class="text">Tambah Kategori</span>
         </a><br><br>
 
         <div class="table-responsive">
@@ -17,12 +16,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Kode Buku</th>
-                        <th>Kategori</th>
-                        <th>Judul</th>
-                        <th>Penulis</th>
-                        <th>Penerbit</th>
-                        <th>Tahun Terbit</th>
+                        <th>Nama Kategori</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -33,18 +27,10 @@
                     @foreach ($data as $item)
                     <tr>
                         <td>{{ $i }}</td>
-                        <td>{{ $item->kode_buku }}</td>
-                        <td>{{ $item->kategori->nama }}</td>
-                        <td>{{ $item->judul }}</td>
-                        <td>{{ $item->penulis }}</td>
-                        <td>{{ $item->penerbit }}</td>
-                        <td>{{ $item->tahun_terbit }}</td>
+                        <td>{{ $item->nama }}</td>
                         <td>
-                            <form action="{{ route('hapus.buku', $item->buku_id) }}"  method="POST">
+                            <form action="{{ route('hapus.kategori', $item->kategori_id) }}"  method="POST">
                                 @csrf
-                                <a href="{{ route('edit.buku', $item->buku_id) }}" class="btn btn-warning">
-                                    <i class="fas fa-fw fa-edit"></i>
-                                </a>
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('yakin ingin menghapus data ini?')">
                                     <i class="fas fa-fw fa-trash"></i>
                                 </button>

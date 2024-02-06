@@ -76,8 +76,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('data.user') }}">Data User</a>
                         <a class="collapse-item" href="{{ route('data.buku') }}">Data Buku</a>
-                        <a class="collapse-item" href="">Data Kategori Buku</a>
-                        <a class="collapse-item" href="">Data Laporan</a>
+                        <a class="collapse-item" href="{{ route('data.kategori') }}">Data Kategori Buku</a>
+                        <a class="collapse-item" href="{{ route('data.laporan') }}">Data Laporan</a>
                         <a class="collapse-item" href="">Data Peminjaman</a>
                     </div>
                 </div>
