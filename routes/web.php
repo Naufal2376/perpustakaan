@@ -25,13 +25,25 @@ Route::get('/', [AuthController::class, 'vlogin'])->name('vlogin');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'vregister'])->name('vregister');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
-
-Route::middleware(['auth'])->group(function () {
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    
+Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/dashboard', [FrontendController::class, 'index'])->name('dashboard');
+});
 
+Route::middleware(['auth','petugas'])->group(function () {
+    Route::get('/dashboard', [FrontendController::class, 'index'])->name('dashboard');
+});
+
+Route::middleware(['auth','admin'])->group(function () {
+    Route::get('/dashboard', [FrontendController::class, 'index'])->name('dashboard');
     // data user
     Route::get('/data_user', [UserController::class, 'data_user'])->name('data.user');
+    Route::get('/data_user/tambah', [UserController::class, 'tambah_user'])->name('tambah.user');
+    Route::post('/data_user/store', [UserController::class, 'store_user'])->name('store.user');
     Route::get('/data_user/hapus/{id}', [UserController::class, 'hapus_user'])->name('hapus.user');
+    Route::get('/data_user/edit/{id}', [UserController::class, 'edit_user'])->name('edit.user');
+    Route::post('/data_user/update/{id}', [UserController::class, 'update_user'])->name('update.user');
 
     // data buku
     Route::get('/data_buku', [BukuController::class, 'data_buku'])->name('data.buku');
@@ -51,10 +63,8 @@ Route::middleware(['auth'])->group(function () {
 
     // data laporan
     Route::get('/data_laporan', [LaporanController::class, 'data_laporan'])->name('data.laporan');
+    Route::get('/data_laporan/tambah', [LaporanController::class, 'tambah_laporan'])->name('tambah.laporan');
 
     // data peminjaman
     Route::get('/data_peminjaman', [PeminjamanController::class, 'data_peminjaman'])->name('data.peminjaman');
-
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
 });

@@ -1,4 +1,5 @@
 @extends('layouts.user')
+@section('title', 'Dashboard')
 @section('content')
 
 <div class="card-body">

@@ -11,16 +11,16 @@ class BukuController extends Controller
 {
     public function data_buku()
     {
-        $data = Buku::all();
+        $buku = Buku::all();
 
         // dd($data);
-        return view('dashboard.user.data.data_buku', compact('data'));
+        return view('dashboard.user.data.data_buku', compact('buku'));
     }
 
     public function tambah_buku()
     {
-        $data = Kategori::all();
-        return view('dashboard.user.data.tambah_buku', compact('data'));
+        $kategori = Kategori::all();
+        return view('dashboard.user.data.form_buku', compact('kategori'));
     }
 
     public function store_buku(Request $request)
@@ -46,16 +46,16 @@ class BukuController extends Controller
 
     public function hapus_buku($buku_id)
     {
-        $data = Buku::find($buku_id);
-        $data->delete();
+        $buku = Buku::find($buku_id);
+        $buku->delete();
         return redirect()->route('data.buku')->with('success', 'Data buku berhasil dihapus');
     }
 
     public function edit_buku($buku_id)
     {
-        $data = Buku::find($buku_id);
-        $data2 = Kategori::all();
-        return view('dashboard.user.data.edit_buku', compact('data', 'data2'));
+        $buku = Buku::find($buku_id);
+        $kategori = Kategori::all();
+        return view('dashboard.user.data.form_buku', compact('buku', 'kategori'));
     }
 
     public function update_buku(Request $request, $buku_id)

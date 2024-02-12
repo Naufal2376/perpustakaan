@@ -1,5 +1,5 @@
 @extends('layouts.user')
-
+@section('title', 'Data Buku')
 @section('content')
 
 <div class="card shadow">
@@ -30,7 +30,7 @@
                     @php
                         $i = 1
                     @endphp
-                    @foreach ($data as $item)
+                    @foreach ($buku as $item)
                     <tr>
                         <td>{{ $i }}</td>
                         <td>{{ $item->kode_buku }}</td>

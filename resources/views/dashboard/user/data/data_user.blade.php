@@ -1,9 +1,16 @@
 @extends('layouts.user')
+@section('title', 'Data User')
 @section('content')
 
 <div class="card shadow">
     <div class="h3 card-header text-primary">Data User</div>
     <div class="card-body">
+        <a href="{{ route('tambah.user') }}" class="btn btn-primary btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-fw fa-plus"></i>
+            </span>
+            <span class="text">Tambah User</span>
+        </a><br><br>
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
@@ -21,7 +28,7 @@
                     @php
                         $i = 1
                     @endphp
-                    @foreach ($data as $item)
+                    @foreach ($user as $item)
                     <tr>
                         <td>{{ $i }}</td>
                         <td>{{ $item->nama }}</td>
@@ -32,6 +39,9 @@
                         <td>
                             <form action="{{ route('hapus.user', $item->id) }}"  method="POST">
                                 @csrf
+                                <a href="{{ route('edit.user', $item->id) }}" class="btn btn-warning">
+                                    <i class="fas fa-fw fa-edit"></i>
+                                </a>
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('yakin ingin menghapus data ini?')">
                                     <i class="fas fa-fw fa-trash"></i>
                                 </button>
@@ -45,6 +55,7 @@
                 </tbody>
             </table>
         </div>
+    </div>
 </div>
 
 @endsection

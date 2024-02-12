@@ -10,14 +10,14 @@ class KategoriController extends Controller
 {
     public function data_kategori()
     {
-        $data = Kategori::all();
+        $kategori = Kategori::all();
 
-        return view('dashboard.user.data.data_kategori', compact('data'));
+        return view('dashboard.user.data.data_kategori', compact('kategori'));
     }
 
     public function tambah_kategori()
     {
-        return view('dashboard.user.data.tambah_kategori');
+        return view('dashboard.user.data.form_kategori');
     }
 
     public function store_kategori(Request $request)
@@ -26,29 +26,29 @@ class KategoriController extends Controller
             'nama' => 'required',
         ]);
 
-        $data = [
+        $kategori = [
             'nama' => $request->nama,
         ];
 
-        Kategori::create($data);
+        Kategori::create($kategori);
 
         return redirect()->route('data.kategori')->with('success', 'Kategori Berhasil Dibuat');
     }
 
     public function hapus_kategori($kategori_id)
     {
-        $data = Kategori::find($kategori_id);
+        $kategori = Kategori::find($kategori_id);
 
-        $data->delete();
+        $kategori->delete();
 
         return redirect()->route('data.kategori')->with('success', 'Kategori Berhasil Dihapus');
     }
 
     public function edit_kategori($kategori_id)
     {
-        $data = Kategori::find($kategori_id);
+        $kategori = Kategori::find($kategori_id);
 
-        return view('dashboard.user.data.edit_kategori', compact('data'));
+        return view('dashboard.user.data.form_kategori', compact('kategori'));
     }
 
     public function update_kategori(Request $request, $kategori_id)
@@ -61,9 +61,9 @@ class KategoriController extends Controller
             'nama' => $request->nama,
         ];
 
-        $data2 = Kategori::find($kategori_id);
+        $kategori = Kategori::find($kategori_id);
 
-        $data2->update($data);
+        $kategori->update($data);
 
         return redirect()->route('data.kategori')->with('success', 'Kategori Berhasil Diupdate');
     }
