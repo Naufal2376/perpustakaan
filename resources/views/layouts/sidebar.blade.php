@@ -28,7 +28,6 @@
     </div> --}}
 
 
-    @if (auth()->user()->level == 'admin')
         <!-- Nav Item - Charts -->
         <li class="nav-item">
             <a class="nav-link" href="">
@@ -49,12 +48,13 @@
                     <a class="collapse-item" href="{{ route('data.user') }}">Data User</a>
                     <a class="collapse-item" href="{{ route('data.buku') }}">Data Buku</a>
                     <a class="collapse-item" href="{{ route('data.kategori') }}">Data Kategori Buku</a>
-                    <a class="collapse-item" href="{{ route('data.laporan') }}">Data Laporan</a>
-                    <a class="collapse-item" href="">Data Peminjaman</a>
+                    <a class="collapse-item" href="{{ route('data.ulasan') }}">Data Ulasan</a>
+                    <a class="collapse-item" href="{{ route('data.peminjaman') }}">Data Peminjaman</a>
                 </div>
             </div>
         </li>
 
+        @if (auth()->user()->level == 'admin')
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                 aria-expanded="true" aria-controls="collapseTwo">
@@ -69,48 +69,7 @@
                 </div>
             </div>
         </li>
-    @elseif (auth()->user()->level == 'petugas')
-        <div class="nav-item">
-            <a class="nav-link" href="">
-                <i class="fas fa-fw fa-check"></i>
-                <span>Transaksi Peminjaman</span>
-            </a>
-        </div>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                aria-expanded="true" aria-controls="collapseOne">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Data Epic</span>
-            </a>
-            <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('data.user') }}">Data User</a>
-                    <a class="collapse-item" href="{{ route('data.buku') }}">Data Buku</a>
-                    <a class="collapse-item" href="{{ route('data.kategori') }}">Data Kategori Buku</a>
-                    <a class="collapse-item" href="{{ route('data.laporan') }}">Data Laporan</a>
-                    <a class="collapse-item" href="">Data Peminjaman</a>
-                </div>
-            </div>
-        </li>
-    @elseif (auth()->user()->level == 'user')
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                aria-expanded="true" aria-controls="collapseOne">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Data Mytic</span>
-            </a>
-            <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('data.user') }}">Data User</a>
-                    <a class="collapse-item" href="{{ route('data.buku') }}">Data Buku</a>
-                    <a class="collapse-item" href="{{ route('data.kategori') }}">Data Kategori Buku</a>
-                    <a class="collapse-item" href="{{ route('data.laporan') }}">Data Laporan</a>
-                    <a class="collapse-item" href="">Data Peminjaman</a>
-                </div>
-            </div>
-        </li>
-    @endif
+        @endif
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

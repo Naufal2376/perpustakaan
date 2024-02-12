@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ulasan', function (Blueprint $table) {
-            $table->id('ulasan_id');
+        Schema::create('peminjaman', function (Blueprint $table) {
+            $table->id('peminjaman_id');
             $table->string('judul');
             $table->string('nama');
-            $table->string('ulasan');
-            $table->enum('rating', ['1', '2', '3', '4', '5']);
+            $table->date('tgl_peminjaman');
+            $table->date('tgl_kembali')->nullable();
+            $table->enum('status', ['dipinjam', 'selesai']);
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ulasan');
+        Schema::dropIfExists('peminjaman');
     }
 };

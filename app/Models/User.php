@@ -26,7 +26,9 @@ class User extends Authenticatable
         'alamat',
         'level'
     ];
-
+    protected $enum = [
+        'level' => ['admin', 'petugas', 'user']
+    ];
     
 
     /**

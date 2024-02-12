@@ -5,12 +5,14 @@
 <div class="card shadow">
     <div class="h3 card-header text-primary">Data Kategori</div>
     <div class="card-body">
+        @if (auth()->user()->level == 'admin')
         <a href="{{ route('tambah.kategori') }}" class="btn btn-primary btn-icon-split">
             <span class="icon text-white-50">
                 <i class="fas fa-fw fa-plus"></i>
             </span>
             <span class="text">Tambah Kategori</span>
         </a><br><br>
+        @endif
 
         <div class="table-responsive">
             <table class="table table-bordered">
@@ -18,7 +20,9 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Kategori</th>
+                        @if (auth()->user()->level == 'admin')
                         <th>Aksi</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +33,7 @@
                     <tr>
                         <td>{{ $i }}</td>
                         <td>{{ $item->nama }}</td>
+                        @if (auth()->user()->level == 'admin')
                         <td>
                             <form action="{{ route('hapus.kategori', $item->kategori_id) }}"  method="POST">
                                 @csrf
@@ -40,6 +45,7 @@
                                 </button>
                             </form>
                         </td>
+                        @endif
                     </tr>
                     @php
                         $i++
