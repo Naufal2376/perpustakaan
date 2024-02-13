@@ -12,13 +12,13 @@ class PeminjamanController extends Controller
     public function data_peminjaman()
     {
         $peminjaman = Peminjaman::all();
-        return view('dashboard.user.data.data_peminjaman', compact('peminjaman'));
+        return view('dashboard.data.data_peminjaman', compact('peminjaman'));
     }
 
     public function tambah_peminjaman()
     {
         $buku = Buku::all();
-        return view('dashboard.user.data.form_peminjaman', compact('buku'));
+        return view('dashboard.data.form_peminjaman', compact('buku'));
     }
 
     public function store_peminjaman(Request $request)
@@ -43,7 +43,7 @@ class PeminjamanController extends Controller
     {
         $peminjaman = Peminjaman::find($peminjaman_id);
         $buku = Buku::all();
-        return view('dashboard.user.data.form_peminjaman', compact('peminjaman', 'buku'));
+        return view('dashboard.data.form_peminjaman', compact('peminjaman', 'buku'));
     }
 
     public function update_peminjaman(Request $request, $peminjaman_id)

@@ -12,12 +12,12 @@ class KategoriController extends Controller
     {
         $kategori = Kategori::all();
 
-        return view('dashboard.user.data.data_kategori', compact('kategori'));
+        return view('dashboard.data.data_kategori', compact('kategori'));
     }
 
     public function tambah_kategori()
     {
-        return view('dashboard.user.data.form_kategori');
+        return view('dashboard.data.form_kategori');
     }
 
     public function store_kategori(Request $request)
@@ -48,7 +48,7 @@ class KategoriController extends Controller
     {
         $kategori = Kategori::find($kategori_id);
 
-        return view('dashboard.user.data.form_kategori', compact('kategori'));
+        return view('dashboard.data.form_kategori', compact('kategori'));
     }
 
     public function update_kategori(Request $request, $kategori_id)

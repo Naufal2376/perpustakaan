@@ -7,6 +7,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Data\BukuController;
 use App\Http\Controllers\Data\UserController;
 use App\Http\Controllers\Data\UlasanController;
+use App\Http\Controllers\Data\LaporanController;
 use App\Http\Controllers\Data\KategoriController;
 use App\Http\Controllers\Data\PeminjamanController;
 
@@ -80,5 +81,20 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{peminjaman_id}', 'edit_peminjaman')->name('edit.peminjaman');
         Route::post('/update/{peminjaman_id}', 'update_peminjaman')->name('update.peminjaman');
         Route::post('/hapus/{peminjaman_id}', 'hapus_peminjaman')->name('hapus.peminjaman');
+    });
+
+    // laporan
+    Route::controller(LaporanController::class)->prefix('laporan')->group(function () {
+        // laporan buku
+        Route::get('/buku', 'laporan_buku')->name('laporan.buku');
+
+        // laporan kategori
+        Route::get('/kategori', 'laporan_kategori')->name('laporan.kategori');
+
+        // laporan peminjaman
+        Route::get('/peminjaman', 'laporan_peminjaman')->name('laporan.peminjaman');
+
+        // laporan user
+        Route::get('/user', 'laporan_user')->name('laporan.user');
     });
 });

@@ -14,13 +14,13 @@ class BukuController extends Controller
         $buku = Buku::all();
 
         // dd($data);
-        return view('dashboard.user.data.data_buku', compact('buku'));
+        return view('dashboard.data.data_buku', compact('buku'));
     }
 
     public function tambah_buku()
     {
         $kategori = Kategori::all();
-        return view('dashboard.user.data.form_buku', compact('kategori'));
+        return view('dashboard.data.form_buku', compact('kategori'));
     }
 
     public function store_buku(Request $request)
@@ -55,7 +55,7 @@ class BukuController extends Controller
     {
         $buku = Buku::find($buku_id);
         $kategori = Kategori::all();
-        return view('dashboard.user.data.form_buku', compact('buku', 'kategori'));
+        return view('dashboard.data.form_buku', compact('buku', 'kategori'));
     }
 
     public function update_buku(Request $request, $buku_id)

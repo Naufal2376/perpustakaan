@@ -1,16 +1,18 @@
-@extends('layouts.user')
-@section('title', 'Data Peminjaman')
+@extends('user')
+@section('title', 'Data Ulasan')
 @section('content')
 
 <div class="card shadow">
     <div class="h3 card-header text-primary">Data Ulasan</div>
     <div class="card-body">
-        <a href="{{ route('tambah.peminjaman') }}" class="btn btn-primary btn-icon-split">
+        @if (auth()->user()->level == 'admin')
+            <a href="{{ route('tambah.ulasan') }}" class="btn btn-primary btn-icon-split">
             <span class="icon text-white-50">
                 <i class="fas fa-fw fa-plus"></i>
             </span>
-            <span class="text">Tambah Peminjaman</span>
+            <span class="text">Tambah Ulasan</span>
         </a><br><br>
+        @endif
 
         <div class="table-responsive">
             <table class="table table-bordered">
@@ -19,9 +21,8 @@
                         <th>No</th>
                         <th>Judul</th>
                         <th>Nama</th>
-                        <th>Tanggal Peminjaman</th>
-                        <th>Tanggal Kembali</th>
-                        <th>Status</th>
+                        <th>Ulasan</th>
+                        <th>Rating</th>
                         @if (auth()->user()->level == 'admin')
                         <th>Aksi</th>
                         @endif
@@ -31,23 +32,18 @@
                     @php
                         $i = 1
                     @endphp
-                    @foreach ($peminjaman as $item)
+                    @foreach ($ulasan as $item)
                     <tr>
                         <td>{{ $i }}</td>
-                        <td>{{ $item->judul }}</td>
-                        <td>{{ $item->nama }}</td>
-                        <td>{{ $item->tgl_peminjaman }}</td>
-                        @if ($item->tgl_kembali == null)
-                            <td>-</td>
-                        @else
-                            <td>{{ $item->tgl_kembali }}</td>
-                        @endif
-                        <td>{{ $item->status }}</td>
+                        <td>{{ $item->buku->judul }}</td>
+                        <td>{{ $item->user->nama }}</td>
+                        <td>{{ $item->ulasan }}</td>
+                        <td>{{ $item->rating }}</td>
                         @if (auth()->user()->level == 'admin')
                         <td>
-                            <form action="{{ route('hapus.peminjaman', $item->peminjaman_id) }}"  method="POST">
+                            <form action="{{ route('hapus.ulasan', $item->ulasan_id) }}"  method="POST">
                                 @csrf
-                                <a href="{{ route('edit.peminjaman', $item->peminjaman_id) }}" class="btn btn-warning">
+                                <a href="{{ route('edit.ulasan', $item->ulasan_id) }}" class="btn btn-warning">
                                     <i class="fas fa-fw fa-edit"></i>
                                 </a>
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('yakin ingin menghapus data ini?')">

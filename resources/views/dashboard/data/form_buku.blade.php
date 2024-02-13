@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('user')
 @section('title', 'Form Buku')
 @section('content')
 

@@ -12,12 +12,12 @@ class UserController extends Controller
     public function data_user()
     {
         $user = User::all();
-        return view('dashboard.user.data.data_user', compact('user'));
+        return view('dashboard.data.data_user', compact('user'));
     }
 
     public function tambah_user()
     {
-        return view('dashboard.user.data.form_user');
+        return view('dashboard.data.form_user');
     }
 
     public function store_user(Request $request)
@@ -56,7 +56,7 @@ class UserController extends Controller
     public function edit_user($id)
     {
         $user = User::find($id);
-        return view('dashboard.user.data.form_user', compact('user'));
+        return view('dashboard.data.form_user', compact('user'));
     }
 
     public function update_user(Request $request, $id)

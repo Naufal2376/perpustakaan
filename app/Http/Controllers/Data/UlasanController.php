@@ -12,13 +12,13 @@ class UlasanController extends Controller
     public function data_ulasan()
     {
         $ulasan = Ulasan::all();
-        return view('dashboard.user.data.data_ulasan', compact('ulasan'));
+        return view('dashboard.data.data_ulasan', compact('ulasan'));
     }
 
     public function tambah_ulasan()
     {
         $buku = Buku::all();
-        return view('dashboard.user.data.form_ulasan', compact('buku'));
+        return view('dashboard.data.form_ulasan', compact('buku'));
     }
 
     public function store_ulasan(Request $request)
@@ -46,7 +46,7 @@ class UlasanController extends Controller
         $ulasan = Ulasan::find($ulasan_id);
         $buku = Buku::all();
 
-        return view('dashboard.user.data.form_ulasan', compact('ulasan','buku'));
+        return view('dashboard.data.form_ulasan', compact('ulasan','buku'));
     }
 
     public function update_ulasan(Request $request, $ulasan_id)

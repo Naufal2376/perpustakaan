@@ -1,5 +1,5 @@
-@extends('layouts.user')
-@section('title', 'Data Kategori')
+@extends('user')
+@section('title', 'Data User')
 @section('content')
 
 <div class="card shadow">
@@ -19,7 +19,11 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Kategori</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>No Telepon</th>
+                        <th>Alamat</th>
+                        <th>Level</th>
                         @if (auth()->user()->level == 'admin')
                         <th>Aksi</th>
                         @endif
@@ -29,15 +33,19 @@
                     @php
                         $i = 1
                     @endphp
-                    @foreach ($kategori as $item)
+                    @foreach ($user as $item)
                     <tr>
                         <td>{{ $i }}</td>
                         <td>{{ $item->nama }}</td>
+                        <td>{{ $item->email }}</td>
+                        <td>{{ $item->telp }}</td>
+                        <td>{{ $item->alamat }}</td>
+                        <td>{{ $item->level }}</td>
                         @if (auth()->user()->level == 'admin')
                         <td>
-                            <form action="{{ route('hapus.kategori', $item->kategori_id) }}"  method="POST">
+                            <form action="{{ route('hapus.user', $item->id) }}" method="POST">
                                 @csrf
-                                <a href="{{ route('edit.kategori', $item->kategori_id) }}" class="btn btn-warning">
+                                <a href="{{ route('edit.user', $item->id) }}" class="btn btn-warning">
                                     <i class="fas fa-fw fa-edit"></i>
                                 </a>
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('yakin ingin menghapus data ini?')">
@@ -56,5 +64,4 @@
         </div>
     </div>
 </div>
-
 @endsection
