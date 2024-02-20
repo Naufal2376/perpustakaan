@@ -30,7 +30,7 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{ route('transaksi.peminjaman') }}">
                 <i class="fas fa-fw fa-check"></i>
                 <span>Transaksi Peminjaman</span>
             </a>

@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DataController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Data\BukuController;
 use App\Http\Controllers\Data\UserController;
@@ -10,6 +9,7 @@ use App\Http\Controllers\Data\UlasanController;
 use App\Http\Controllers\Data\LaporanController;
 use App\Http\Controllers\Data\KategoriController;
 use App\Http\Controllers\Data\PeminjamanController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +81,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{peminjaman_id}', 'edit_peminjaman')->name('edit.peminjaman');
         Route::post('/update/{peminjaman_id}', 'update_peminjaman')->name('update.peminjaman');
         Route::post('/hapus/{peminjaman_id}', 'hapus_peminjaman')->name('hapus.peminjaman');
+
+    });
+    // transaksi peminjaman
+    Route::controller(TransaksiController::class)->prefix('transaksi_peminjaman')->group(function () {
+        Route::get('/', 'index')->name('transaksi.peminjaman');
+        Route::get('/tambah/{buku_id}', 'tambah_transaksi')->name('tambah.transaksi');
+        Route::post('/store', 'store_transaksi')->name('store.transaksi');
     });
 
     // laporan

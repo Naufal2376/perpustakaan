@@ -18,6 +18,10 @@ class DatabaseSeeder extends Seeder
             'kategori_id' => 1,
             'nama' => 'fiksi',
         ]);
+        DB::table('kategori')->insert([
+            'kategori_id' => 2,
+            'nama' => 'horor',
+        ]);
 
         DB::table('users')->insert([
             'id' => 1,
@@ -46,6 +50,24 @@ class DatabaseSeeder extends Seeder
             'telp' => '083146867066',
             'alamat' => 'sekayu',
             'level' => 'admin'
+        ]);
+        DB::table('buku')->insert([
+            'buku_id' => 1,
+            'kode_buku' => 12345,
+            'judul' => 'hello world',
+            'penulis' => 'naufal',
+            'penerbit' => 'gramedia',
+            'tahun_terbit' => '2024',
+            'kategori_id' => 1
+        ]);
+        DB::table('buku')->insert([
+            'buku_id' => 2,
+            'kode_buku' => 123456,
+            'judul' => 'munafiq',
+            'penulis' => 'nextri',
+            'penerbit' => 'pancaroba',
+            'tahun_terbit' => '2024',
+            'kategori_id' => 2
         ]);
     }
 }
