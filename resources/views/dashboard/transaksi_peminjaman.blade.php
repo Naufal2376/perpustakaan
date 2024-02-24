@@ -20,12 +20,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php
-                        $i = 1
-                    @endphp
                     @foreach ($buku as $item)
                     <tr>
-                        <td>{{ $i }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->kode_buku }}</td>
                         <td>{{ $item->kategori->nama }}</td>
                         <td>{{ $item->judul }}</td>
@@ -33,13 +30,50 @@
                         <td>{{ $item->penerbit }}</td>
                         <td>{{ $item->tahun_terbit }}</td>
                         <td>
-                            <a href="{{ route('tambah.transaksi', $item->buku_id) }}" class="btn btn-primary">Pinjam</a>
+                            @php
+                                $status = '';
+                                $action = '';
+                                $id = null;
+
+                                foreach($peminjaman as $pinjam) {
+                                    if($pinjam->buku->buku_id == $item->buku_id) {
+                                        $status = $pinjam->status;
+                                        $id = ($status == 'dipinjam') ? $pinjam->peminjaman_id : $item->buku_id;
+                                        break;
+                                    }
+                                }
+
+                                switch ($status) {
+                                    case 'dipinjam':
+                                        $action = 'Kembalikan';
+                                        $route = 'kembalikan.pinjam';
+                                        break;
+                                    case 'selesai':
+                                        $action = 'Selesai';
+                                        $route = '';
+                                        break;
+                                    default:
+                                        $action = 'Pinjam';
+                                        $route = 'pinjam.buku';
+                                        break;
+                                }
+                            @endphp
+                            @if ($route)
+                                <form action="{{ route($route, $id) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="buku_id" value="{{ $item->buku_id }}">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ $action }}
+                                    </button>
+                                </form>
+                            @else
+                                <button class="btn btn-secondary" disabled>
+                                    {{ $action }}
+                                </button>
+                            @endif
                         </td>
                     </tr>
-                    @php
-                        $i++
-                    @endphp
-                    @endforeach
+                @endforeach
                 </tbody>
             </table>
         </div>

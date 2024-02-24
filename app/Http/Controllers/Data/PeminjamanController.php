@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Data;
 
-use App\Http\Controllers\Controller;
 use App\Models\Buku;
+use App\Models\Koleksi;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PeminjamanController extends Controller
 {
@@ -23,19 +24,16 @@ class PeminjamanController extends Controller
 
     public function store_peminjaman(Request $request)
     {
-        $request->validate([
-            'judul' => 'required',
-            'nama' => 'required',
-            'status' => 'required',
-        ], [
-            'judul.required' => 'Judul wajib diisi',
-            'nama.required' => 'Nama wajib diisi',
-            'status.required' => 'Status wajib diisi',
-        ]);
-
         $peminjaman = $request->all();
         $peminjaman['tgl_peminjaman'] = date('Y-m-d');
         Peminjaman::create($peminjaman);
+
+        $koleksi = [
+            'buku_id' => $request->buku_id,
+            'user_id' => $request->user_id,
+        ];
+        Koleksi::create($koleksi);
+
         return redirect()->route('data.peminjaman')->with('success', 'Data berhasil ditambahkan');
     }
 

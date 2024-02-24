@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('ulasan', function (Blueprint $table) {
             $table->id('ulasan_id');
-            $table->string('judul');
-            $table->string('nama');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('buku_id');
             $table->string('ulasan');
             $table->enum('rating', ['1', '2', '3', '4', '5']);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('buku_id')->references('buku_id')->on('buku');
         });
     }
 

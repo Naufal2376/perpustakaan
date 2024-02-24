@@ -50,11 +50,12 @@
                     <a class="collapse-item" href="{{ route('data.kategori') }}">Data Kategori Buku</a>
                     <a class="collapse-item" href="{{ route('data.ulasan') }}">Data Ulasan</a>
                     <a class="collapse-item" href="{{ route('data.peminjaman') }}">Data Peminjaman</a>
+                    <a class="collapse-item" href="{{ route('data.koleksi') }}">Data Koleksi</a>
                 </div>
             </div>
         </li>
 
-        @if (auth()->user()->level == 'admin')
+        @if (auth()->user()->level == 'admin' || auth()->user()->level == 'petugas')
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                 aria-expanded="true" aria-controls="collapseTwo">

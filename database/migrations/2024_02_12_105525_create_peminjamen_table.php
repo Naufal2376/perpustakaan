@@ -19,6 +19,9 @@ return new class extends Migration
             $table->date('tgl_kembali')->nullable();
             $table->string('status');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('buku_id')->references('buku_id')->on('buku');
         });
     }
 

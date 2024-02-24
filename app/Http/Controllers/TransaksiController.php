@@ -3,29 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
-use App\Models\Peminjaman;
-use App\Models\Transaksi;
 use App\Models\User;
+use App\Models\Koleksi;
+use App\Models\Transaksi;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TransaksiController extends Controller
 {
     public function index()
     {
         $buku = Buku::all();
-        return view('dashboard.transaksi_peminjaman', compact('buku'));
+        $peminjaman = Peminjaman::all();
+        // dd($peminjaman);
+        return view('dashboard.transaksi_peminjaman', compact('buku', 'peminjaman'));
     }
 
-    public function tambah_transaksi()
+    public function tambah_transaksi($buku_id)
     {
-        return view('dashboard.form_transaksi');
+        $buku = Buku::find($buku_id);
+        return view('dashboard.form_transaksi', compact('buku'));
     }
 
     public function store_transaksi(Request $request)
     {
-        $transaksi = $request->all();
-        $transaksi['tgl_transaksi'] = date('Y-m-d');
-        Transaksi::create($transaksi);
+        $peminjaman = [
+            'buku_id' => $request->buku_id,
+            'user_id' => $request->user_id,
+            'tgl_peminjaman' => $request->tgl_peminjaman,
+            'status' => 'dipinjam'
+        ];
+        // dd($request->all());
+        Peminjaman::create($peminjaman);
+
+        $koleksi = [
+            'buku_id' => $request->buku_id,
+            'user_id' => $request->user_id,
+        ];
+        Koleksi::create($koleksi);
 
         return redirect()->route('transaksi.peminjaman')->with('success', 'Berhasil menambahkan data');
     }

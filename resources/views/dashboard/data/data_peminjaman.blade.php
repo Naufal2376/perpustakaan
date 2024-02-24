@@ -34,8 +34,8 @@
                     @foreach ($peminjaman as $item)
                     <tr>
                         <td>{{ $i }}</td>
-                        <td>{{ $item->judul }}</td>
-                        <td>{{ $item->nama }}</td>
+                        <td>{{ $item->buku->judul }}</td>
+                        <td>{{ $item->user->nama }}</td>
                         <td>{{ $item->tgl_peminjaman }}</td>
                         @if ($item->tgl_kembali == null)
                             <td>-</td>

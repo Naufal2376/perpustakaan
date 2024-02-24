@@ -7,24 +7,28 @@
     <div class="card-body">
         <form action="{{ route('store.transaksi') }}" method="POST">
             @csrf
-            <input type="hidden" name="nama" value="{{ auth()->user()->nama }}">
             <div class="form-group">
-                <label for="">Buku</label>
-                <select name="judul" id="" class="form-control">
-                    <option value="" selected disabled hidden>-- Pilih buku --</option>
-                    @foreach ($buku as $item)
-                        <option value="{{ $item->judul }}">{{ $item->judul }}</option>
-                    @endforeach
-                </select>
+                <label for="">Judul Buku</label>
+                <input type="text" name="judul" value="{{ $buku->judul }}" class="form-control">
             </div>
             <div class="form-group">
-                <label for="">Tanggal Transaksi</label>
-                <input type="text" name="tgl_transaksi" value="{{ date('Y-m-d') }}" class="form-control" disabled>
+                <label for="">Penulis</label>
+                <input type="text" name="penulis" value="{{ $buku->penulis }}" class="form-control">
             </div>
             <div class="form-group">
-                <label for="">Bayar</label>
-                <input type="number" name="bayar" placeholder="Masukkan Harga" class="form-control">
+                <label for="">Penerbit</label>
+                <input type="text" name="penerbit" value="{{ $buku->penerbit }}" class="form-control">
             </div>
+            <div class="form-group">
+                <label for="">Tanggal Peminjaman</label>
+                <input type="text" name="tgl_peminjaman" value="{{ date('Y-m-d') }}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Kategori Buku</label>
+                <input type="text" name="kategori" value="{{ $buku->kategori->nama }}" class="form-control">
+            </div>
+            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+            <input type="hidden" name="buku_id" value="{{ $buku->buku_id }}">
             <button type="submit" class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-fw fa-save"></i>

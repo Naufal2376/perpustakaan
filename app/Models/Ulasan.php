@@ -12,19 +12,19 @@ class Ulasan extends Model
     protected $table = 'ulasan';
     protected $primaryKey = 'ulasan_id';
     protected $fillable = [
-        'judul',
-        'nama',
+        'user_id',
+        'buku_id',
         'ulasan',
         'rating'
     ];
 
     public function buku()
     {
-        return $this->hasOne(Buku::class, 'judul', 'judul');
+        return $this->belongsTo(Buku::class, 'buku_id', 'buku_id');
     }
 
     public function user()
     {
-        return $this->hasOne(User::class, 'nama', 'nama');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

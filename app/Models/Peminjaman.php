@@ -12,10 +12,19 @@ class Peminjaman extends Model
     protected $table = 'peminjaman';
     protected $primaryKey = 'peminjaman_id';
     protected $fillable = [
-        'judul',
-        'nama',
+        'user_id',
+        'buku_id',
         'tgl_peminjaman',
         'tgl_kembali',
         'status'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+    public function buku()
+    {
+        return $this->belongsTo(Buku::class, 'buku_id', 'buku_id');
+    }
 }

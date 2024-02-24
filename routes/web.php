@@ -5,11 +5,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Data\BukuController;
 use App\Http\Controllers\Data\UserController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\Data\UlasanController;
+use App\Http\Controllers\Data\KoleksiController;
 use App\Http\Controllers\Data\LaporanController;
 use App\Http\Controllers\Data\KategoriController;
 use App\Http\Controllers\Data\PeminjamanController;
-use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,13 +82,25 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{peminjaman_id}', 'edit_peminjaman')->name('edit.peminjaman');
         Route::post('/update/{peminjaman_id}', 'update_peminjaman')->name('update.peminjaman');
         Route::post('/hapus/{peminjaman_id}', 'hapus_peminjaman')->name('hapus.peminjaman');
-
     });
+
+    // data koleksi
+    Route::controller(KoleksiController::class)->prefix('data_koleksi')->group(function () {
+        Route::get('/', 'data_koleksi')->name('data.koleksi');
+        Route::get('/tambah', 'tambah_koleksi')->name('tambah.koleksi');
+        Route::post('/store', 'store_koleksi')->name('store.koleksi');
+        Route::get('/edit/{koleksi_id}', 'edit_koleksi')->name('edit.koleksi');
+        Route::post('/update/{koleksi_id}', 'update_koleksi')->name('update.koleksi');
+        Route::post('/hapus/{koleksi_id}', 'hapus_koleksi')->name('hapus.koleksi');
+    });
+
     // transaksi peminjaman
     Route::controller(TransaksiController::class)->prefix('transaksi_peminjaman')->group(function () {
         Route::get('/', 'index')->name('transaksi.peminjaman');
-        Route::get('/tambah/{buku_id}', 'tambah_transaksi')->name('tambah.transaksi');
-        Route::post('/store', 'store_transaksi')->name('store.transaksi');
+        Route::get('/tambah/{buku_id}', 'pinjam_buku')->name('pinjam.buku');
+        Route::post('/store', 'store_pinjam')->name('store.pinjam');
+        Route::post('/kembalikan{peminjaman_id}', 'kembalikan_pinjam')->name('kembalikan.pinjam');
+        Route::post('/selesai{peminjaman_id}', 'selesai_pinjam')->name('selesai.pinjam');
     });
 
     // laporan

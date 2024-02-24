@@ -9,14 +9,14 @@
             @csrf
             <div class="form-group">
                 <label for="">Judul</label>
-                <select name="judul" id="" class="form-control">
+                <select name="buku_id" id="" class="form-control">
                     <option value="" selected disabled hidden>-- Pilih Buku --</option>
                     @foreach ($buku as $item)
-                        <option {{ isset($ulasan) && $ulasan->buku->judul == $item->judul ? 'selected' : '' }} value="{{ $item->judul }}">{{ $item->judul }}</option>
+                        <option {{ isset($ulasan) && $ulasan->buku->judul == $item->judul ? 'selected' : '' }} value="{{ $item->buku_id }}">{{ $item->judul }}</option>
                     @endforeach
                 </select>
             </div>
-            <input type="text" name="nama" hidden value="{{ isset($ulasan) ? $ulasan->nama : auth()->user()->nama }}" class="form-control">
+            <input type="text" name="user_id" hidden value="{{ isset($ulasan) ? $ulasan->user_id : auth()->user()->id }}" class="form-control">
             <div class="form-group">
                 <label for="">Ulasan</label>
                 <textarea name="ulasan" id="" class="form-control" rows="5">{{ isset($ulasan) ? $ulasan->ulasan : '' }}</textarea>

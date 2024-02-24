@@ -23,19 +23,8 @@ class UlasanController extends Controller
 
     public function store_ulasan(Request $request)
     {
-        $request->validate([
-            'judul' => 'required',
-            'nama' => 'required',
-            'ulasan' => 'required',
-            'rating' => 'required'
-        ], [
-            'judul.required' => 'Judul wajib diisi',
-            'nama.required' => 'Nama wajib diisi',
-            'ulasan.required' => 'Ulasan wajib diisi',
-            'rating.required' => 'Rating wajib diisi',
-        ]);
-
         $ulasan = $request->all();
+        dd($ulasan);
         Ulasan::create($ulasan);
 
         return redirect()->route('data.ulasan')->with('success', 'Data berhasil ditambahkan');
