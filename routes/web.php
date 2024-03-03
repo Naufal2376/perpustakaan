@@ -99,8 +99,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', 'index')->name('transaksi.peminjaman');
         Route::get('/tambah/{buku_id}', 'pinjam_buku')->name('pinjam.buku');
         Route::post('/store', 'store_pinjam')->name('store.pinjam');
-        Route::post('/kembalikan{peminjaman_id}', 'kembalikan_pinjam')->name('kembalikan.pinjam');
-        Route::post('/selesai{peminjaman_id}', 'selesai_pinjam')->name('selesai.pinjam');
+        Route::post('/kembalikan/{peminjaman_id}', 'kembalikan_pinjam')->name('kembalikan.pinjam');
     });
 
     // laporan

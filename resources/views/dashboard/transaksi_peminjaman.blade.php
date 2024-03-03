@@ -47,6 +47,7 @@
                                     case 'dipinjam':
                                         $action = 'Kembalikan';
                                         $route = 'kembalikan.pinjam';
+                                        $id = $pinjam->peminjaman_id;
                                         break;
                                     case 'selesai':
                                         $action = 'Selesai';
@@ -54,7 +55,8 @@
                                         break;
                                     default:
                                         $action = 'Pinjam';
-                                        $route = 'pinjam.buku';
+                                        $route = 'store.pinjam';
+                                        $id = $item->buku_id;
                                         break;
                                 }
                             @endphp
@@ -62,6 +64,7 @@
                                 <form action="{{ route($route, $id) }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="buku_id" value="{{ $item->buku_id }}">
+                                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                     <button type="submit" class="btn btn-primary">
                                         {{ $action }}
                                     </button>

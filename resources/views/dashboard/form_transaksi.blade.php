@@ -5,7 +5,7 @@
 <div class="card shadow">
     <div class="h3 card-header text-primary">Form Transaksi</div>
     <div class="card-body">
-        <form action="{{ route('store.transaksi') }}" method="POST">
+        <form action="{{ route('store.pinjam') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="">Judul Buku</label>
