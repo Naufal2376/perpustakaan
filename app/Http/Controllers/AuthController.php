@@ -26,9 +26,6 @@ class AuthController extends Controller
 
         $data = $request->only('email', 'password');
 
-
-        // dd($data);
-
         if (auth()->attempt($data)) {
             return redirect()->route('dashboard');
         } else {

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('user')
 @section('content')
 
 <button class="btn btn-warning" onclick="printFieldset()">
